@@ -36,6 +36,25 @@ const displayAiUniverse = tools => {
         `;
         aiContainer.appendChild(aiDiv);
     });
+    
 
 }
+
 loadAI();
+
+document.getElementById('see-more').addEventListener('click',function(){
+  toggleSpinner(true);
+})
+
+const toggleSpinner=isLoading=>{
+  const loaderSection=document.getElementById('loader');
+  if(isLoading){
+    loaderSection.classList.remove('d-none');
+  }
+  else{
+    loaderSection.classList.add('d-none');
+  }
+
+  document.getElementById('see-more').classList.add('d-none');
+}
+
