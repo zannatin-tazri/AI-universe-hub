@@ -101,8 +101,7 @@ const displayAiDetails= tool=>{
     <p>${tool.data.integrations[0]}</p>
     <p>${tool.data.integrations[1]}</p>
     <p>${tool.data.integrations[2]}</p>
-    <p>${tool.data.integrations[3]?integrations[3]:('')}</p>
-    <p>${tool.data.integrations[4]?integrations[3]:('')}</p>
+    
     
     </div>
     </div>
@@ -119,6 +118,10 @@ const displayAiDetails= tool=>{
     
     </div>
     
+    `;
+
+    document.getElementById('accuracy').innerHTML=`
+    <p>${tool.data.accuracy?score:null}% accuracy</p>
     `
 }
 
