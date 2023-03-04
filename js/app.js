@@ -129,6 +129,8 @@ const displayAiDetails= tool=>{
 }
 // See details section ends
 
+
+// Calling function
 loadAI();
 
 
