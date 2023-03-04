@@ -25,7 +25,7 @@ const displayAiUniverse = (tools) => {
                           <hr>
                           <div class="d-flex justify-content-between">
                           <h3>${tool.name}</h3>
-                          <button onclick="loadDetails()" class="btn btn-light border border-0 btn-details" data-bs-toggle="modal" data-bs-target="#aiDetailModal"><i class="fa-solid fa-arrow-right"></i></button>
+                          <button onclick="fetchNewDetail('${tool.id}')" class="btn btn-light border border-0 btn-details" data-bs-toggle="modal" data-bs-target="#aiDetailModal"><i class="fa-solid fa-arrow-right"></i></button>
                           </div>
                           <div>
                           <p><i class="fa-solid fa-calendar-days"></i> ${tool.published_in}</p>
@@ -34,6 +34,8 @@ const displayAiUniverse = (tools) => {
                       </div>
         `;
         aiContainer.appendChild(aiDiv); 
+
+        
     });
 }
 
@@ -54,6 +56,68 @@ const toggleSpinner=isLoading=>{
     loaderSection.classList.add('d-none');
   }  
   document.getElementById('see-more').classList.add('d-none');
+}
+
+const fetchNewDetail=id=>{
+  let url=` https://openapi.programming-hero.com/api/ai/tool/${id}`
+  fetch(url).then(res=>res.json()).then(data=>displayAiDetails(data))
+}
+
+const displayAiDetails= tool=>{
+  console.log(tool);
+  document.getElementById("modal-body").innerHTML=`
+    <div class="d-flex">
+    <div class="card w-75 mb-3">
+  <div class="card-body">
+    <h6 class="card-title">${tool.data.description}</h6>
+    <p class="card-text">
+    <div class="d-flex text-center ">
+    <div class="m-1 p-1 border border-primary-subtle">
+    <span class="text-break">${tool.data.pricing[0].price}</span><br>
+    <span >${tool.data.pricing[0].plan}</span>
+    </div>
+    <div class="m-0 p-1 border border-primary-subtle>
+    <span class="text-break">${tool.data.pricing[1].price}</span><br>
+    <span >${tool.data.pricing[1].plan}</span>
+
+    </div>
+    <div class="m-1 p-1 border border-primary-subtle radius>
+    <span class="text-break">${tool.data.pricing[2].price}</span><br>
+    <span class="text-break">${tool.data.pricing[2].plan}</span>
+    </div>
+    </div>
+    </p>
+    
+    <div class="d-flex justify-content-between">
+    <div>
+    <h4>Features</h4>
+    <p>${tool.data.features[1].feature_name}</p>
+    <p>${tool.data.features[2].feature_name}</p>
+    <p>${tool.data.features[3].feature_name}</p>    
+
+    </div>
+    <div>
+    <h4>Integrations</h4>
+    <p>${tool.data.integrations[0]}</p>
+    <p>${tool.data.integrations[1]}</p>
+    <p>${tool.data.integrations[2]}</p>
+    
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="card w-50">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Button</a>
+  </div>
+</div>
+    
+    </div>
+    
+    `
 }
 
 
