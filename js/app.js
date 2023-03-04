@@ -121,10 +121,9 @@ const displayAiDetails= tool=>{
     `;
 
     document.getElementById('accuracy').innerHTML=`
-    <p>${tool.data.accuracy?score:null}% accuracy</p>
-    `
+    <span>${tool.data.accuracy.score}</span>
+    `;
 }
-
 
 
 loadAI();
