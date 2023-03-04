@@ -1,3 +1,4 @@
+// Loading Data
 const loadAI = async () => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`;
     const res = await fetch(url);
@@ -5,6 +6,7 @@ const loadAI = async () => {
     displayAiUniverse(data.data.tools.slice(0,6));
 }
 
+// Displaying Data
 const displayAiUniverse = (tools) => {
   
     console.log(tools);
@@ -34,14 +36,13 @@ const displayAiUniverse = (tools) => {
                       </div>
         `;
         aiContainer.appendChild(aiDiv); 
-
         
     });
 }
 
 
 
-// Spinner 
+// Spinner section
 document.getElementById('btn-see-more').addEventListener('click',function(){
   toggleSpinner(true);
   })
@@ -57,7 +58,9 @@ const toggleSpinner=isLoading=>{
   }  
   document.getElementById('see-more').classList.add('d-none');
 }
+// spinner section ends
 
+// See Details section
 const fetchNewDetail=id=>{
   let url=` https://openapi.programming-hero.com/api/ai/tool/${id}`
   fetch(url).then(res=>res.json()).then(data=>displayAiDetails(data))
@@ -124,7 +127,7 @@ const displayAiDetails= tool=>{
     <span>${tool.data.accuracy.score}</span>
     `;
 }
-
+// See details section ends
 
 loadAI();
 
