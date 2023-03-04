@@ -2,18 +2,18 @@ const loadAI = async () => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`;
     const res = await fetch(url);
     const data = await res.json();
-    displayAiUniverse(data.data.tools);
+    displayAiUniverse(data.data.tools.slice(0,6));
 }
 
-const displayAiUniverse = tools => {
+const displayAiUniverse = (tools) => {
+  
     console.log(tools);
     const aiContainer = document.getElementById('ai-container');
-    tools=tools.slice(0,6);
+    aiContainer.innerHTML="";
     tools.forEach(tool => {
         const aiDiv = document.createElement('div');
         aiDiv.classList.add('col');
         aiDiv.innerHTML = `
-        
                       <div class="card h-100 p-4">
                         <img src="${tool.image}" class="card-img-top" alt="...">
                         <div class="card-body">
@@ -32,29 +32,30 @@ const displayAiUniverse = tools => {
                           </div>  
                         </div>
                       </div>
-                    
         `;
-        aiContainer.appendChild(aiDiv);
+        aiContainer.appendChild(aiDiv); 
     });
-    
-
 }
 
 loadAI();
 
-document.getElementById('see-more').addEventListener('click',function(){
+// Spinner 
+document.getElementById('btn-see-more').addEventListener('click',function(){
   toggleSpinner(true);
-})
+  })
 
 const toggleSpinner=isLoading=>{
   const loaderSection=document.getElementById('loader');
   if(isLoading){
     loaderSection.classList.remove('d-none');
   }
-  else{
+  
+  else if(isLoading){
     loaderSection.classList.add('d-none');
-  }
-
+  }  
   document.getElementById('see-more').classList.add('d-none');
 }
+
+
+
 
