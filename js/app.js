@@ -101,17 +101,19 @@ const displayAiDetails= tool=>{
     <p>${tool.data.integrations[0]}</p>
     <p>${tool.data.integrations[1]}</p>
     <p>${tool.data.integrations[2]}</p>
+    <p>${tool.data.integrations[3]?integrations[3]:('')}</p>
+    <p>${tool.data.integrations[4]?integrations[3]:('')}</p>
     
     </div>
     </div>
   </div>
 </div>
 
-<div class="card w-50">
+<div class="card" style="width: 18rem;">
+  <img src="${tool.data.image_link[0]}" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Button</a>
+    <p class="card-text">${tool.data.input_output_examples[0].input}</p>
+    <p class="card-text">${tool.data.input_output_examples[0].output}</p>
   </div>
 </div>
     
