@@ -25,7 +25,7 @@ const displayAiUniverse = (tools) => {
                           <hr>
                           <div class="d-flex justify-content-between">
                           <h3>${tool.name}</h3>
-                          <button class="btn btn-light border border-0 btn-details"><i class="fa-solid fa-arrow-right"></i></button>
+                          <button onclick="loadDetails()" class="btn btn-light border border-0 btn-details" data-bs-toggle="modal" data-bs-target="#aiDetailModal"><i class="fa-solid fa-arrow-right"></i></button>
                           </div>
                           <div>
                           <p><i class="fa-solid fa-calendar-days"></i> ${tool.published_in}</p>
@@ -37,7 +37,7 @@ const displayAiUniverse = (tools) => {
     });
 }
 
-loadAI();
+
 
 // Spinner 
 document.getElementById('btn-see-more').addEventListener('click',function(){
@@ -57,5 +57,7 @@ const toggleSpinner=isLoading=>{
 }
 
 
+
+loadAI();
 
 
